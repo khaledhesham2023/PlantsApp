@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/plantsFragment">
+
+    <fragment
+        android:id="@+id/plantDetailsFragment"
+        android:name="com.khaledamin.plantsapp.ui.plantsdetails.PlantDetailsFragment"
+        android:label="@string/plant_details"
+        tools:layout="@layout/fragment_plant_details"/>
+    <fragment
+        android:id="@+id/plantsFragment"
+        android:name="com.khaledamin.plantsapp.ui.plants.PlantsFragment"
+        android:label="@string/plants"
+        tools:layout="@layout/fragment_plants">
+        <action
+            android:id="@+id/action_plantsFragment_to_plantDetailsFragment"
+            app:destination="@id/plantDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+</navigation>
