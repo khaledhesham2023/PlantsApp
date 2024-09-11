@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface Api {
 
-    @GET("plants/{token}")
+    @GET("plants")
     suspend fun getPlants(@Query("token") token: String) : GetPlantsResponse
 
     companion object {

@@ -5,6 +5,5 @@ import com.khaledamin.plantsapp.util.ViewState
 import kotlinx.coroutines.flow.Flow
 
 interface Repo {
-
-    fun getPlants(token: String) : Flow<ViewState<List<Plant>>>
+    suspend fun getPlants(token: String) : Flow<ViewState<List<Plant>>>
 }

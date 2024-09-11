@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -12,19 +13,95 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/pale_yellow"
         android:layout_margin="@dimen/standard_dimen"
         android:elevation="@dimen/default_elevation">
 
         <ImageView
+            android:id="@+id/plant_image"
             android:layout_width="@dimen/zero_constraint"
             android:layout_height="@dimen/image_height"
+            android:scaleType="centerCrop"
             android:layout_marginBottom="@dimen/standard_dimen"
             android:contentDescription="@{plant.commonName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_plant_placeholder"
+            imgUrl="@{plant.imageUrl}"
+            android:padding="@dimen/standard_dimen"
             android:background="@color/dark_green"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/common_name"
+            text="@{plant.commonName}"
+            app:layout_constraintTop_toBottomOf="@id/plant_image"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/title_original_size"
+            android:textStyle="bold"
+            tools:text="Evergreen oak"
+            android:layout_margin="@dimen/standard_dimen"
+            android:textAllCaps="true"/>
 
+        <TextView
+            android:id="@+id/scientific_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_dimen"
+            text="@{`(` + plant.scientificName + `)`}"
+            android:textColor="@color/green"
+            android:textSize="@dimen/subtitle_original_size"
+            android:textStyle="italic"
+            tools:text="Quercus rotundifolia"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/common_name" />
+
+        <TextView
+            android:id="@+id/publication_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/standard_dimen_half"
+            android:background="@color/pale_yellow"
+            year="@{plant.year}"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/normal_text_fontSize"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="@+id/plant_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="@+id/plant_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="100dp"
+            status="@{plant.status}"
+            android:textAlignment="center"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/normal_text_fontSize"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.0"
+            android:padding="@dimen/standard_dimen_half"
+            android:background="@color/pale_yellow"
+            app:layout_constraintBottom_toBottomOf="@id/plant_image"
+            app:layout_constraintEnd_toEndOf="@id/plant_image"
+            app:layout_constraintStart_toStartOf="@+id/plant_image"
+            app:layout_constraintTop_toTopOf="@id/plant_image" />
+
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/status"-->
+<!--            android:contentDescription="@string/ipni_status"-->
+<!--            android:text="@string/ipni"-->
+<!--            app:layout_constraintStart_toStartOf="@id/plant_image"-->
+<!--            app:layout_constraintTop_toTopOf="@id/plant_image"-->
+<!--            IPNIStatus="@{plant.status}"/>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

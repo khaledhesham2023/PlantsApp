@@ -1,12 +1,19 @@
 package com.khaledamin.plantsapp.ui.plantsdetails
 
-import com.khaledamin.plantsapp.R
-import com.khaledamin.plantsapp.databinding.FragmentPlantDetailsBinding
-import com.khaledamin.plantsapp.ui.base.BaseFragment
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 
 
-class PlantDetailsFragment : BaseFragment<FragmentPlantDetailsBinding>() {
-    override val layout: Int
-        get() = R.layout.fragment_plant_details
+class PlantDetailsFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
 }

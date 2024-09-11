@@ -1,6 +1,7 @@
 package com.khaledamin.plantsapp.model.response
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Plant(
     @SerializedName("id")
@@ -35,4 +36,4 @@ data class Plant(
     val family:String?,
     @SerializedName("links")
     val links: Links?
-)
+): Serializable

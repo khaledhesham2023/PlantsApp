@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="standard_dimen">16dp</dimen>
+    <dimen name="standard_dimen_half">8dp</dimen>
     <dimen name="image_height">200dp</dimen>
     <dimen name="default_elevation">5dp</dimen>
     <dimen name="zero_constraint">0dp</dimen>
+    <dimen name="title_original_size">20sp</dimen>
+    <dimen name="subtitle_original_size">18sp</dimen>
+    <dimen name="normal_text_fontSize">14sp</dimen>
 </resources>

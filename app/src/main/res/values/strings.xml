@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">PlantsApp</string>
+    <string name="app_name">Plants App</string>
     <string name="plants">Plants</string>
     <string name="plant_details">Plant Details</string>
+    <string name="ipni">IPNI</string>
+    <string name="ipni_status">IPNI status</string>
 </resources>

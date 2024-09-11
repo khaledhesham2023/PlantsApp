@@ -19,8 +19,12 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewBinding = DataBindingUtil.inflate(inflater,layout,container,false)
-        setupObservers()
         return viewBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupObservers()
     }
 
     abstract fun setupObservers()

@@ -9,7 +9,11 @@
         android:id="@+id/plantDetailsFragment"
         android:name="com.khaledamin.plantsapp.ui.plantsdetails.PlantDetailsFragment"
         android:label="@string/plant_details"
-        tools:layout="@layout/fragment_plant_details"/>
+        tools:layout="@layout/fragment_plant_details">
+        <argument
+            android:name="plant"
+            app:argType="com.khaledamin.plantsapp.model.response.Plant" />
+    </fragment>
     <fragment
         android:id="@+id/plantsFragment"
         android:name="com.khaledamin.plantsapp.ui.plants.PlantsFragment"
