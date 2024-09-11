@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="plant"
+            type="com.khaledamin.plantsapp.model.response.Plant" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_dimen"
+        android:elevation="@dimen/default_elevation">
+
+        <ImageView
+            android:layout_width="@dimen/zero_constraint"
+            android:layout_height="@dimen/image_height"
+            android:layout_marginBottom="@dimen/standard_dimen"
+            android:contentDescription="@{plant.commonName}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/dark_green"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

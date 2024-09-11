@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="standard_dimen">16dp</dimen>
+    <dimen name="image_height">200dp</dimen>
+    <dimen name="default_elevation">5dp</dimen>
+    <dimen name="zero_constraint">0dp</dimen>
+</resources>
