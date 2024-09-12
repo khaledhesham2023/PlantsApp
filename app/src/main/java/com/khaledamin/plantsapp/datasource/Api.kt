@@ -11,6 +11,7 @@ interface Api {
 
     companion object {
         const val BASE_URL = "https://trefle.io/api/v1/"
+        const val WIKIPEDIA_URL = "https://en.wikipedia.org/wiki/"
 
     }
 

@@ -1,6 +1,5 @@
 package com.khaledamin.plantsapp.ui.plants
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +10,7 @@ import com.khaledamin.plantsapp.util.ViewState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class PlantsViewModel(val repo: Repo, val token: String) : ViewModel() {
+class PlantsViewModel(private val repo: Repo, private val token: String) : ViewModel() {
 
     private val _getPlantsLiveData = MutableLiveData<List<Plant>>()
     val getPlantsLiveData: LiveData<List<Plant>>
@@ -32,7 +31,6 @@ class PlantsViewModel(val repo: Repo, val token: String) : ViewModel() {
                 _showProgress.value = true
                 when(it){
                     is ViewState.Success -> {
-                        Log.i("TAGGG","Data success, ${it.data?.get(0)?.commonName}")
                         _showProgress.value = false
                         _getPlantsLiveData.value = it.data!!
                     }

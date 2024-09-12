@@ -1,20 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="plant"
+            type="com.khaledamin.plantsapp.model.response.Plant" />
     </data>
 
-    <FrameLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.plantsdetails.PlantDetailsFragment">
+        android:background="@color/pale_yellow">
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/plant_details" />
+            tools:context=".ui.plantsdetails.PlantDetailsFragment">
 
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/plant_image"
+                imgUrl="@{plant.imageUrl}"
+                android:layout_width="@dimen/zero_constraint"
+                android:layout_height="@dimen/image_height"
+                android:background="@color/dark_green"
+                android:contentDescription="@{plant.commonName}"
+                android:padding="@dimen/standard_dimen_half"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_plant_placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/plant_common_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_dimen"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@{plant.commonName}"
+                android:textColor="@color/dark_green"
+                android:textSize="@dimen/details_title_original_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/plant_image" />
+
+            <TextView
+                android:id="@+id/plant_family_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_dimen"
+                android:text="@string/family"
+                android:textAlignment="center"
+                android:textColor="@color/dark_green"
+                android:textSize="@dimen/subtitle_original_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/plant_common_name" />
+
+            <TextView
+                android:id="@+id/plant_family"
+                text="@{plant.family}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:textSize="@dimen/title_original_size"
+                app:layout_constraintBottom_toBottomOf="@+id/plant_family_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/plant_family_label"
+                app:layout_constraintTop_toTopOf="@+id/plant_family_label" />
+
+            <TextView
+                android:id="@+id/plant_index_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_dimen"
+                android:text="@string/index"
+                android:textAlignment="center"
+                android:textColor="@color/dark_green"
+                android:textSize="@dimen/subtitle_original_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/plant_family_label" />
+
+            <TextView
+                android:id="@+id/plant_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.format(plant.bibliography,plant.scientificName)}"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:textSize="@dimen/title_original_size"
+                app:layout_constraintBottom_toBottomOf="@+id/plant_index_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/plant_index_label"
+                app:layout_constraintTop_toTopOf="@+id/plant_index_label" />
+
+            <TextView
+                android:id="@+id/author_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_dimen"
+                android:text="@string/author"
+                android:textAlignment="center"
+                android:textColor="@color/dark_green"
+                android:textSize="@dimen/subtitle_original_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/plant_index" />
+
+            <TextView
+                android:id="@+id/author"
+                text="@{plant.author}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:textSize="@dimen/title_original_size"
+                app:layout_constraintBottom_toBottomOf="@+id/author_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/author_label"
+                app:layout_constraintTop_toTopOf="@+id/author_label" />
+
+            <Button
+                android:id="@+id/more_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/standard_dimen"
+                android:backgroundTint="@color/dark_green"
+                android:text="@string/click_here_for_more_info"
+                android:textAllCaps="true"
+                android:textColor="@color/yellow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/author" />
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="@dimen/zero_constraint"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standard_dimen"
+                android:layout_marginBottom="@dimen/standard_dimen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/more_button" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

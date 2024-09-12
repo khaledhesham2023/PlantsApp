@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/plantsFragment"
         android:name="com.khaledamin.plantsapp.ui.plants.PlantsFragment"
-        android:label="@string/plants"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_plants">
         <action
             android:id="@+id/action_plantsFragment_to_plantDetailsFragment"

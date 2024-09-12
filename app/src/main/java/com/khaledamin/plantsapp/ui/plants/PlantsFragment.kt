@@ -52,9 +52,10 @@ class PlantsFragment : BaseFragment<FragmentPlantsBinding>(), PlantsCallback {
         viewBinding.plantsList.adapter = plantsAdapter
         viewBinding.plantsList.layoutManager = LinearLayoutManager(requireContext())
     }
+
     override fun setupObservers() {
         viewModel.showProgress.observe(viewLifecycleOwner) { progress ->
-            Log.i("TAGGG",BuildConfig.API_KEY)
+            Log.i("TAGGG", BuildConfig.API_KEY)
             if (progress) {
                 viewBinding.progress.visibility = View.VISIBLE
             } else {
