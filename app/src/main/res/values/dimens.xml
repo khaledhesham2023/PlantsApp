@@ -8,5 +8,6 @@
     <dimen name="title_original_size">20sp</dimen>
     <dimen name="details_title_original_size">25sp</dimen>
     <dimen name="subtitle_original_size">18sp</dimen>
-    <dimen name="normal_text_fontSize">14sp</dimen>
+    <dimen name="normal_text_fontSize">16sp</dimen>
+    <dimen name="image_height_on_list_page">100dp</dimen>
 </resources>

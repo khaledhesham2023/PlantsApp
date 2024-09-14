@@ -13,95 +13,106 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/pale_yellow"
         android:layout_margin="@dimen/standard_dimen"
+        android:background="@color/pale_yellow"
         android:elevation="@dimen/default_elevation">
 
         <ImageView
             android:id="@+id/plant_image"
-            android:layout_width="@dimen/zero_constraint"
-            android:layout_height="@dimen/image_height"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="@dimen/standard_dimen"
-            android:contentDescription="@{plant.commonName}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_plant_placeholder"
             imgUrl="@{plant.imageUrl}"
-            android:padding="@dimen/standard_dimen"
-            android:background="@color/dark_green"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/common_name"
-            text="@{plant.commonName}"
-            app:layout_constraintTop_toBottomOf="@id/plant_image"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textColor="@color/dark_green"
-            android:textSize="@dimen/title_original_size"
-            android:textStyle="bold"
-            tools:text="Evergreen oak"
-            android:layout_margin="@dimen/standard_dimen"
-            android:textAllCaps="true"/>
-
-        <TextView
-            android:id="@+id/scientific_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_dimen"
-            text="@{`(` + plant.scientificName + `)`}"
-            android:textColor="@color/green"
-            android:textSize="@dimen/subtitle_original_size"
-            android:textStyle="italic"
-            tools:text="Quercus rotundifolia"
+            android:layout_width="@dimen/image_height_on_list_page"
+            android:layout_height="@dimen/image_height_on_list_page"
+            android:layout_margin="@dimen/standard_dimen_half"
+            android:background="@color/dark_green"
+            android:contentDescription="@{plant.commonName}"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/common_name" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_plant_placeholder" />
 
         <TextView
-            android:id="@+id/publication_year"
+            android:id="@+id/common_name_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/standard_dimen_half"
-            android:background="@color/pale_yellow"
-            year="@{plant.year}"
+            android:text="@string/name"
+            android:layout_margin="@dimen/standard_dimen_half"
             android:textColor="@color/dark_green"
             android:textSize="@dimen/normal_text_fontSize"
-            app:layout_constraintVertical_bias="0.0"
-            app:layout_constraintBottom_toBottomOf="@+id/plant_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintStart_toStartOf="@+id/plant_image"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/year_label"
+            app:layout_constraintStart_toEndOf="@+id/plant_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/status"
+            android:id="@+id/common_name"
+            text="@{plant.commonName}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="100dp"
-            status="@{plant.status}"
-            android:textAlignment="center"
+            android:layout_margin="@dimen/standard_dimen_half"
+            android:ellipsize="end"
+            android:maxWidth="@dimen/image_height_on_list_page"
+            android:maxLines="2"
+            android:scrollHorizontally="false"
+            android:textColor="@color/green"
+            android:textSize="@dimen/normal_text_fontSize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/common_name_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/common_name_label"
+            app:layout_constraintTop_toTopOf="@+id/common_name_label" />
+
+        <TextView
+            android:id="@+id/year"
+            year="@{plant.year}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_dimen_half"
+            android:textColor="@color/green"
+            android:textSize="@dimen/normal_text_fontSize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/year_label"
+            app:layout_constraintStart_toEndOf="@+id/year_label"
+            app:layout_constraintTop_toTopOf="@+id/year_label" />
+
+        <TextView
+            android:id="@+id/year_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/year"
             android:textColor="@color/dark_green"
             android:textSize="@dimen/normal_text_fontSize"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="0.0"
-            android:padding="@dimen/standard_dimen_half"
-            android:background="@color/pale_yellow"
-            app:layout_constraintBottom_toBottomOf="@id/plant_image"
-            app:layout_constraintEnd_toEndOf="@id/plant_image"
-            app:layout_constraintStart_toStartOf="@+id/plant_image"
-            app:layout_constraintTop_toTopOf="@id/plant_image" />
+            android:textStyle="bold"
+            android:layout_margin="@dimen/standard_dimen_half"
+            app:layout_constraintBottom_toTopOf="@+id/status_label"
+            app:layout_constraintStart_toEndOf="@+id/plant_image"
+            app:layout_constraintTop_toBottomOf="@+id/common_name_label" />
 
-<!--        <ImageView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/status"-->
-<!--            android:contentDescription="@string/ipni_status"-->
-<!--            android:text="@string/ipni"-->
-<!--            app:layout_constraintStart_toStartOf="@id/plant_image"-->
-<!--            app:layout_constraintTop_toTopOf="@id/plant_image"-->
-<!--            IPNIStatus="@{plant.status}"/>-->
+        <TextView
+            android:id="@+id/status"
+            text="@{plant.status}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_dimen_half"
+            android:textColor="@color/green"
+            android:textSize="@dimen/normal_text_fontSize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/status_label"
+            app:layout_constraintStart_toEndOf="@+id/status_label"
+            app:layout_constraintTop_toTopOf="@+id/status_label" />
+
+        <TextView
+            android:id="@+id/status_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ipni_status"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/normal_text_fontSize"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/standard_dimen_half"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/plant_image"
+            app:layout_constraintTop_toBottomOf="@+id/year_label" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

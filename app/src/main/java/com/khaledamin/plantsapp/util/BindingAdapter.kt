@@ -31,7 +31,7 @@ fun setYear(textView: TextView, year: Int?) = when (year) {
         textView.text = "NA"
     }
     else -> {
-        textView.text = "Published on $year"
+        textView.text = year.toString()
     }
 }
 

@@ -1,41 +1,51 @@
 package com.khaledamin.plantsapp.ui.plants
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.khaledamin.plantsapp.BuildConfig
 import com.khaledamin.plantsapp.R
 import com.khaledamin.plantsapp.databinding.FragmentPlantsBinding
 import com.khaledamin.plantsapp.datasource.Api
 import com.khaledamin.plantsapp.datasource.RepoImpl
+import com.khaledamin.plantsapp.datasource.UseCases
 import com.khaledamin.plantsapp.model.response.Plant
 import com.khaledamin.plantsapp.ui.base.BaseFragment
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.khaledamin.plantsapp.util.provideRetrofitInstance
 
 
 @Suppress("UNCHECKED_CAST")
-class PlantsFragment : BaseFragment<FragmentPlantsBinding>(), PlantsCallback {
+class PlantsFragment : BaseFragment<FragmentPlantsBinding>(), PlantsCallback, TabCallback {
     override val layout: Int
         get() = R.layout.fragment_plants
 
     private lateinit var plantsAdapter: PlantsAdapter
+    private lateinit var tabsAdapter: TabsAdapter
+    private val map = mutableMapOf(
+        "All" to "all",
+        "Palestine" to "pal",
+        "Sudan" to "sud",
+        "Myanmar" to "mya",
+        "Transcaucasia" to "tcs",
+        "Uzbekistan" to "uzb",
+    )
+    private var zone = "all"
+    private var page = 1
 
     private val viewModel: PlantsViewModel by viewModels(factoryProducer = {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 return PlantsViewModel(
-                    RepoImpl(
-                        Retrofit.Builder().baseUrl(Api.BASE_URL)
-                            .addConverterFactory(GsonConverterFactory.create()).build()
-                            .create(Api::class.java)
-                    ), BuildConfig.API_KEY
+                    UseCases(
+                        RepoImpl(provideRetrofitInstance().create(Api::class.java)
+                    ))
                 ) as T
             }
         }
@@ -45,17 +55,23 @@ class PlantsFragment : BaseFragment<FragmentPlantsBinding>(), PlantsCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         plantsAdapter = PlantsAdapter(ArrayList(), this)
+        tabsAdapter = TabsAdapter(
+            data = map,this
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.plantsList.adapter = plantsAdapter
         viewBinding.plantsList.layoutManager = LinearLayoutManager(requireContext())
+        viewBinding.tabs.adapter = tabsAdapter
+        viewBinding.tabs.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        viewModel.getPlantsByZone(zone, page)
     }
 
     override fun setupObservers() {
         viewModel.showProgress.observe(viewLifecycleOwner) { progress ->
-            Log.i("TAGGG", BuildConfig.API_KEY)
             if (progress) {
                 viewBinding.progress.visibility = View.VISIBLE
             } else {
@@ -80,5 +96,13 @@ class PlantsFragment : BaseFragment<FragmentPlantsBinding>(), PlantsCallback {
                 plant
             )
         )
+    }
+
+    @SuppressLint("NewApi")
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun onTabClicked(initialZone: String) {
+        viewBinding.tabs.scrollToPosition(map.keys.stream().toList().indexOf(zone))
+        zone = initialZone
+        viewModel.getPlantsByZone(zone, page)
     }
 }

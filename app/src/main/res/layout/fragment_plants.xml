@@ -12,21 +12,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.plants.PlantsFragment">
 
-        <TextView
-            android:id="@+id/app_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_dimen"
-            android:fontFamily="@font/montserrat_semibold"
-            android:padding="@dimen/standard_dimen"
-            android:text="@string/app_name"
-            android:textColor="@color/dark_green"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ProgressBar
             android:id="@+id/progress"
             android:layout_width="wrap_content"
@@ -37,6 +22,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tabs"
+            android:layout_width="@dimen/zero_constraint"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_dimen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/plants_list"
             android:layout_width="@dimen/zero_constraint"
             android:layout_height="@dimen/zero_constraint"
@@ -44,7 +38,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/app_title"/>
+            app:layout_constraintTop_toBottomOf="@id/tabs"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

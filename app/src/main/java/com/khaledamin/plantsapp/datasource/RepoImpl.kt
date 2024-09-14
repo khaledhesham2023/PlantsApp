@@ -13,15 +13,37 @@ class RepoImpl(
     private val api: Api,
 ) : Repo {
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    override suspend fun getPlants(token: String): Flow<ViewState<List<Plant>>> {
+    override suspend fun getPlantsByZone(zone:String,page:Int): Flow<ViewState<List<Plant>>> {
         return flow {
             val plants = try {
-                api.getPlants(token)
+                    api.getPlantsByZone(zone,page)
+            } catch (e: HttpException) {
+                e.printStackTrace()
+                emit(ViewState.Error(message = e.message))
+                return@flow
+            } catch (e: IOException) {
+                e.printStackTrace()
+                emit(ViewState.Error(message = e.message))
+                return@flow
+            } catch (e: Exception) {
+                e.printStackTrace()
+                emit(ViewState.Error(message = e.message))
+                return@flow
+            }
+            emit(ViewState.Success(data = plants.data))
+        }
+    }
+
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
+    override suspend fun getAllPlants(page: Int): Flow<ViewState<List<Plant>>> {
+        return flow {
+            val plants = try {
+                api.getAllPlants(page)
             } catch (e:HttpException){
                 e.printStackTrace()
                 emit(ViewState.Error(message = e.message))
                 return@flow
-            } catch (e:IOException){
+            } catch (e: IOException){
                 e.printStackTrace()
                 emit(ViewState.Error(message = e.message))
                 return@flow

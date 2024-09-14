@@ -34,121 +34,181 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/plant_common_name"
-                android:layout_width="wrap_content"
+            <!-- common name -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/name_group"
+                android:layout_width="@dimen/zero_constraint"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/standard_dimen"
-                android:fontFamily="@font/montserrat_semibold"
-                android:text="@{plant.commonName}"
-                android:textColor="@color/dark_green"
-                android:textSize="@dimen/details_title_original_size"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/plant_image" />
+                app:layout_constraintTop_toBottomOf="@+id/plant_image">
 
-            <TextView
-                android:id="@+id/plant_family_label"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/plant_common_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/standard_dimen"
+                    android:text="@string/name"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_green"
+                    android:textSize="@dimen/subtitle_original_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/plant_common_name"
+                    text="@{plant.commonName}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/standard_dimen"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/subtitle_original_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/plant_common_name_label"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- family -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/family_group"
+                android:layout_width="@dimen/zero_constraint"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/standard_dimen"
-                android:text="@string/family"
-                android:textAlignment="center"
-                android:textColor="@color/dark_green"
-                android:textSize="@dimen/subtitle_original_size"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/plant_common_name" />
-
-            <TextView
-                android:id="@+id/plant_family"
-                text="@{plant.family}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/green"
-                android:textSize="@dimen/title_original_size"
-                app:layout_constraintBottom_toBottomOf="@+id/plant_family_label"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toEndOf="@+id/plant_family_label"
-                app:layout_constraintTop_toTopOf="@+id/plant_family_label" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_group">
 
-            <TextView
-                android:id="@+id/plant_index_label"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/plant_family_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/standard_dimen"
+                    android:text="@string/family"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_green"
+                    android:textSize="@dimen/subtitle_original_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/plant_family"
+                    text="@{plant.family}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/standard_dimen"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/title_original_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/plant_family_label"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- index -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/index_group"
+                android:layout_width="@dimen/zero_constraint"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/standard_dimen"
-                android:text="@string/index"
-                android:textAlignment="center"
-                android:textColor="@color/dark_green"
-                android:textSize="@dimen/subtitle_original_size"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/plant_family_label" />
-
-            <TextView
-                android:id="@+id/plant_index"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{String.format(plant.bibliography,plant.scientificName)}"
-                android:textAlignment="center"
-                android:textColor="@color/green"
-                android:textSize="@dimen/title_original_size"
-                app:layout_constraintBottom_toBottomOf="@+id/plant_index_label"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toEndOf="@+id/plant_index_label"
-                app:layout_constraintTop_toTopOf="@+id/plant_index_label" />
+                app:layout_constraintTop_toBottomOf="@id/family_group">
 
-            <TextView
-                android:id="@+id/author_label"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/plant_index_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/index"
+                    android:textAlignment="center"
+                    android:layout_marginStart="@dimen/standard_dimen"
+                    android:textColor="@color/dark_green"
+                    android:textSize="@dimen/subtitle_original_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/plant_index"
+                    text='@{String.format("%s\n%s",plant.bibliography,plant.scientificName)}'
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="@dimen/image_height"
+                    android:maxLines="4"
+                    android:layout_marginStart="@dimen/standard_dimen"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/subtitle_original_size"
+                    app:layout_constraintStart_toEndOf="@id/plant_index_label"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- author -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/author_group"
+                android:layout_width="@dimen/zero_constraint"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/standard_dimen"
-                android:text="@string/author"
-                android:textAlignment="center"
-                android:textColor="@color/dark_green"
-                android:textSize="@dimen/subtitle_original_size"
+                app:layout_constraintTop_toBottomOf="@id/index_group"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/plant_index" />
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
-                android:id="@+id/author"
-                text="@{plant.author}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/green"
-                android:textSize="@dimen/title_original_size"
-                app:layout_constraintBottom_toBottomOf="@+id/author_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toEndOf="@+id/author_label"
-                app:layout_constraintTop_toTopOf="@+id/author_label" />
+                <TextView
+                    android:id="@+id/author_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/author"
+                    android:layout_marginStart="@dimen/standard_dimen"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_green"
+                    android:textSize="@dimen/subtitle_original_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/author"
+                    text="@{plant.author}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/standard_dimen"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/subtitle_original_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/author_label"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <Button
                 android:id="@+id/more_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/standard_dimen"
                 android:backgroundTint="@color/dark_green"
                 android:text="@string/click_here_for_more_info"
                 android:textAllCaps="true"
+                android:layout_margin="@dimen/standard_dimen"
                 android:textColor="@color/yellow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/author" />
+                app:layout_constraintTop_toBottomOf="@+id/author_group" />
 
             <WebView
                 android:id="@+id/webView"
                 android:layout_width="@dimen/zero_constraint"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/standard_dimen"
-                android:layout_marginBottom="@dimen/standard_dimen"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/more_button" />
+                app:layout_constraintTop_toBottomOf="@+id/more_button" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>
