@@ -1,26 +1,22 @@
 package com.khaledamin.plantsapp.ui.plantsdetails
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.NavHostFragment
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.khaledamin.plantsapp.R
 import com.khaledamin.plantsapp.databinding.FragmentPlantDetailsBinding
-import com.khaledamin.plantsapp.datasource.Api
-import com.khaledamin.plantsapp.model.response.Plant
-
+import com.khaledamin.plantsapp.datasource.local.PlantEntity
+import com.khaledamin.plantsapp.datasource.remote.Api
 
 class PlantDetailsFragment : Fragment() {
 
-    private lateinit var plant: Plant
+    private lateinit var plant: PlantEntity
     private lateinit var viewBinding: FragmentPlantDetailsBinding
 
     override fun onCreateView(
@@ -44,7 +40,6 @@ class PlantDetailsFragment : Fragment() {
             override fun handleOnBackPressed() {
                 findNavController().popBackStack()
             }
-
         })
     }
 

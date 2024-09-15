@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.khaledamin.plantsapp.R
 import com.khaledamin.plantsapp.databinding.ItemPlantBinding
-import com.khaledamin.plantsapp.model.response.Plant
+import com.khaledamin.plantsapp.datasource.local.PlantEntity
 
-class PlantsAdapter(val oldData: ArrayList<Plant>, val plantsCallback: PlantsCallback) :
+class PlantsAdapter(val oldData: ArrayList<PlantEntity>, val plantsCallback: PlantsCallback) :
     Adapter<PlantsAdapter.PlantsViewHolder>() {
 
     inner class PlantsViewHolder(val binding: ItemPlantBinding) :
@@ -42,7 +42,7 @@ class PlantsAdapter(val oldData: ArrayList<Plant>, val plantsCallback: PlantsCal
 
     override fun getItemCount(): Int = oldData.size
 
-    fun updateDataSet(newData: List<Plant>){
+    fun updateDataSet(newData: List<PlantEntity>){
         val plantUtils = DiffUtil.calculateDiff(PlantsUtils(oldData, newData))
         oldData.clear()
         oldData.addAll(newData)

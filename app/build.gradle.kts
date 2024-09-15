@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -69,4 +71,18 @@ dependencies {
     kapt (libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.kotlinx.coroutines.android.v152)
+    implementation(libs.hilt.android)
+    annotationProcessor (libs.hilt.compiler)
+
+    // For instrumentation tests
+    androidTestImplementation(libs.hilt.android.testing)
+    androidTestAnnotationProcessor(libs.hilt.compiler)
+
+    // For local unit tests
+    testImplementation(libs.hilt.android.testing)
+    testAnnotationProcessor(libs.hilt.compiler)
+}
+
+kapt {
+    correctErrorTypes = true
 }

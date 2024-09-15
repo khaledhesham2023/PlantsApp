@@ -1,7 +1,7 @@
 package com.khaledamin.plantsapp.util
 
 import com.khaledamin.plantsapp.BuildConfig
-import com.khaledamin.plantsapp.datasource.Api
+import com.khaledamin.plantsapp.datasource.remote.Api
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

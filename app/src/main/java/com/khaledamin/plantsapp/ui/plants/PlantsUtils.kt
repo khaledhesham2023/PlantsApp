@@ -1,9 +1,9 @@
 package com.khaledamin.plantsapp.ui.plants
 
 import androidx.recyclerview.widget.DiffUtil
-import com.khaledamin.plantsapp.model.response.Plant
+import com.khaledamin.plantsapp.datasource.local.PlantEntity
 
-class PlantsUtils(private val oldData: List<Plant>, private val newData: List<Plant>) : DiffUtil.Callback() {
+class PlantsUtils(private val oldData: List<PlantEntity>, private val newData: List<PlantEntity>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldData.size
 
     override fun getNewListSize(): Int = newData.size

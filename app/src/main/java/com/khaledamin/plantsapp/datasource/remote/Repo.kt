@@ -1,4 +1,4 @@
-package com.khaledamin.plantsapp.datasource
+package com.khaledamin.plantsapp.datasource.remote
 
 import com.khaledamin.plantsapp.model.response.Plant
 import com.khaledamin.plantsapp.util.ViewState

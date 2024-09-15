@@ -1,4 +1,4 @@
-package com.khaledamin.plantsapp.datasource
+package com.khaledamin.plantsapp.datasource.remote
 
 import android.net.http.HttpException
 import android.os.Build
@@ -12,22 +12,23 @@ import java.io.IOException
 class RepoImpl(
     private val api: Api,
 ) : Repo {
+
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    override suspend fun getPlantsByZone(zone:String,page:Int): Flow<ViewState<List<Plant>>> {
+    override suspend fun getPlantsByZone(zone: String, page: Int): Flow<ViewState<List<Plant>>> {
         return flow {
             val plants = try {
-                    api.getPlantsByZone(zone,page)
+                api.getPlantsByZone(zone, page)
             } catch (e: HttpException) {
                 e.printStackTrace()
-                emit(ViewState.Error(message = e.message))
+                emit(ViewState.Error())
                 return@flow
             } catch (e: IOException) {
                 e.printStackTrace()
-                emit(ViewState.Error(message = e.message))
+                emit(ViewState.Error())
                 return@flow
             } catch (e: Exception) {
                 e.printStackTrace()
-                emit(ViewState.Error(message = e.message))
+                emit(ViewState.Error())
                 return@flow
             }
             emit(ViewState.Success(data = plants.data))
@@ -39,17 +40,17 @@ class RepoImpl(
         return flow {
             val plants = try {
                 api.getAllPlants(page)
-            } catch (e:HttpException){
+            } catch (e: HttpException) {
                 e.printStackTrace()
-                emit(ViewState.Error(message = e.message))
+                emit(ViewState.Error())
                 return@flow
-            } catch (e: IOException){
+            } catch (e: IOException) {
                 e.printStackTrace()
-                emit(ViewState.Error(message = e.message))
+                emit(ViewState.Error())
                 return@flow
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
-                emit(ViewState.Error(message = e.message))
+                emit(ViewState.Error())
                 return@flow
             }
             emit(ViewState.Success(data = plants.data))

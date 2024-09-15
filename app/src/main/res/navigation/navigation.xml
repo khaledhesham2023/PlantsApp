@@ -6,15 +6,6 @@
     app:startDestination="@id/plantsFragment">
 
     <fragment
-        android:id="@+id/plantDetailsFragment"
-        android:name="com.khaledamin.plantsapp.ui.plantsdetails.PlantDetailsFragment"
-        android:label="@string/plant_details"
-        tools:layout="@layout/fragment_plant_details">
-        <argument
-            android:name="plant"
-            app:argType="com.khaledamin.plantsapp.model.response.Plant" />
-    </fragment>
-    <fragment
         android:id="@+id/plantsFragment"
         android:name="com.khaledamin.plantsapp.ui.plants.PlantsFragment"
         android:label="@string/app_name"
@@ -26,5 +17,15 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/plantDetailsFragment"
+        android:name="com.khaledamin.plantsapp.ui.plantsdetails.PlantDetailsFragment"
+        android:label="@string/plant_details"
+        tools:layout="@layout/fragment_plant_details">
+        <argument
+            android:name="plant"
+            app:argType="com.khaledamin.plantsapp.datasource.local.PlantEntity" />
     </fragment>
 </navigation>

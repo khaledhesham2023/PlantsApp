@@ -1,7 +1,7 @@
 package com.khaledamin.plantsapp.ui.plants
 
-import com.khaledamin.plantsapp.model.response.Plant
+import com.khaledamin.plantsapp.datasource.local.PlantEntity
 
 interface PlantsCallback {
-    fun onPlantClicked(plant: Plant)
+    fun onPlantClicked(plant: PlantEntity)
 }
