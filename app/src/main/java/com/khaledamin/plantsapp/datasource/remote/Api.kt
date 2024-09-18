@@ -16,11 +16,6 @@ interface Api {
     suspend fun getAllPlants(@Query("page") page: Int) : GetPlantsResponse
 
     companion object {
-        //        fun getBaseUrl(zone: String, page: Int): String = when (zone) {
-//            "" -> "https://trefle.io/api/v1/plants/"
-//            else -> "https://trefle.io/api/v1/distributions/${zone}/plants?page=${page}"
-//        }
-        const val BASE_URL = "https://trefle.io/api/v1/"
         const val WIKIPEDIA_URL = "https://en.wikipedia.org/wiki/"
 
     }

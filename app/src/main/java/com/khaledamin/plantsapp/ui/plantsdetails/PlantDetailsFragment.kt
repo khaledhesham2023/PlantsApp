@@ -13,7 +13,9 @@ import com.khaledamin.plantsapp.R
 import com.khaledamin.plantsapp.databinding.FragmentPlantDetailsBinding
 import com.khaledamin.plantsapp.datasource.local.PlantEntity
 import com.khaledamin.plantsapp.datasource.remote.Api
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PlantDetailsFragment : Fragment() {
 
     private lateinit var plant: PlantEntity
@@ -42,5 +44,4 @@ class PlantDetailsFragment : Fragment() {
             }
         })
     }
-
 }

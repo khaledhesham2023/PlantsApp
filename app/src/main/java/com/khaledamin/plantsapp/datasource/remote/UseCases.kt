@@ -7,9 +7,14 @@ import com.khaledamin.plantsapp.datasource.local.PlantRepo
 import com.khaledamin.plantsapp.model.response.Plant
 import com.khaledamin.plantsapp.util.ViewState
 import kotlinx.coroutines.flow.collectLatest
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class UseCases(private val repoImpl: RepoImpl, private val plantsRepo: PlantRepo) {
-
+@Singleton
+class UseCases @Inject constructor(
+    private val repoImpl: RepoImpl,
+    private val plantsRepo: PlantRepo,
+) {
 
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     suspend fun getPlants(zone: String, page: Int): List<PlantEntity> {

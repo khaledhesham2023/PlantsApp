@@ -21,7 +21,6 @@ class PlantsAdapter(val oldData: ArrayList<PlantEntity>, val plantsCallback: Pla
             }
         }
     }
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
@@ -35,11 +34,9 @@ class PlantsAdapter(val oldData: ArrayList<PlantEntity>, val plantsCallback: Pla
             )
         )
     }
-
     override fun onBindViewHolder(holder: PlantsAdapter.PlantsViewHolder, position: Int) {
         holder.binding.plant = oldData[position]
     }
-
     override fun getItemCount(): Int = oldData.size
 
     fun updateDataSet(newData: List<PlantEntity>){

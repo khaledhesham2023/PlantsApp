@@ -9,9 +9,15 @@ import androidx.lifecycle.viewModelScope
 import com.khaledamin.plantsapp.datasource.local.PlantDatabase
 import com.khaledamin.plantsapp.datasource.local.PlantEntity
 import com.khaledamin.plantsapp.datasource.remote.UseCases
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PlantsViewModel(private val useCases: UseCases, private val plantDatabase: PlantDatabase) : ViewModel() {
+@HiltViewModel
+class PlantsViewModel @Inject constructor(
+    private val useCases: UseCases,
+    private val plantDatabase: PlantDatabase,
+) : ViewModel() {
 
     private val _getPlantsLiveData = MutableLiveData<List<PlantEntity>>()
     val getPlantsLiveData: LiveData<List<PlantEntity>>
@@ -33,7 +39,7 @@ class PlantsViewModel(private val useCases: UseCases, private val plantDatabase:
             try {
                 _getPlantsLiveData.value = useCases.getPlants(zone, page)
                 _showProgress.value = false
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 _getPlantsLiveData.value = plantDatabase.plantDao().getPlants()
                 _showProgress.value = false
             }

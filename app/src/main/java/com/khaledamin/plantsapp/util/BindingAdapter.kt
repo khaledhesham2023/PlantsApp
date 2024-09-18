@@ -34,14 +34,3 @@ fun setYear(textView: TextView, year: Int?) = when (year) {
         textView.text = year.toString()
     }
 }
-
-@SuppressLint("SetTextI18n")
-@BindingAdapter("status")
-fun setStatus(textView: TextView, text: String?) = when (text) {
-    null, "" -> {
-        textView.text = "NA"
-    }
-    else -> {
-        textView.text = "IPNI $text"
-    }
-}

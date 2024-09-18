@@ -72,15 +72,15 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.kotlinx.coroutines.android.v152)
     implementation(libs.hilt.android)
-    annotationProcessor (libs.hilt.compiler)
+    kapt(libs.hilt.compiler)
 
     // For instrumentation tests
     androidTestImplementation(libs.hilt.android.testing)
-    androidTestAnnotationProcessor(libs.hilt.compiler)
+    kaptAndroidTest (libs.hilt.compiler)
 
     // For local unit tests
-    testImplementation(libs.hilt.android.testing)
-    testAnnotationProcessor(libs.hilt.compiler)
+    testImplementation (libs.hilt.android.testing)
+    kaptTest(libs.hilt.compiler)
 }
 
 kapt {

@@ -8,23 +8,16 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresExtension
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.khaledamin.plantsapp.R
 import com.khaledamin.plantsapp.databinding.FragmentPlantsBinding
-import com.khaledamin.plantsapp.datasource.local.PlantDatabase
 import com.khaledamin.plantsapp.datasource.local.PlantEntity
-import com.khaledamin.plantsapp.datasource.local.PlantRepo
-import com.khaledamin.plantsapp.datasource.remote.Api
-import com.khaledamin.plantsapp.datasource.remote.RepoImpl
-import com.khaledamin.plantsapp.datasource.remote.UseCases
 import com.khaledamin.plantsapp.ui.base.BaseFragment
-import com.khaledamin.plantsapp.util.provideRetrofitInstance
+import dagger.hilt.android.AndroidEntryPoint
 
 
-@Suppress("UNCHECKED_CAST")
+@AndroidEntryPoint
 class PlantsFragment : BaseFragment<FragmentPlantsBinding>(), PlantsCallback, TabCallback {
     override val layout: Int
         get() = R.layout.fragment_plants
@@ -44,19 +37,7 @@ class PlantsFragment : BaseFragment<FragmentPlantsBinding>(), PlantsCallback, Ta
     private var page = 1
 
 
-    private val viewModel: PlantsViewModel by viewModels(factoryProducer = {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return PlantsViewModel(
-                    useCases = UseCases(
-                        RepoImpl(provideRetrofitInstance().create(Api::class.java)),
-                        PlantRepo(PlantDatabase.getDatabase(requireContext()).plantDao())
-                    ),
-                    plantDatabase = PlantDatabase.getDatabase(requireContext())
-                ) as T
-            }
-        }
-    })
+    private val viewModel: PlantsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,16 +57,6 @@ class PlantsFragment : BaseFragment<FragmentPlantsBinding>(), PlantsCallback, Ta
         viewBinding.tabs.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         viewModel.getPlantsByZone(zone, page)
-//        viewBinding.plantsList.addOnScrollListener(object : OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//                itemCount = layoutManager.itemCount
-//                lastItemPosition = layoutManager.findLastVisibleItemPosition()
-//                if (lastItemPosition == itemCount - 1){
-//                    viewModel.getPlantsByZone(zone, page++)
-//                }
-//            }
-//        })
     }
 
     override fun setupObservers() {
